@@ -38,3 +38,5 @@ database reverse engineer --schema "public" --package ~.domain
 // Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-05-17 10:53:37
 service all --interfacePackage com.livebetter.services 
 web mvc all --package com.livebetter.controllers
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-05-17 13:33:50
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-05-17 13:40:36
