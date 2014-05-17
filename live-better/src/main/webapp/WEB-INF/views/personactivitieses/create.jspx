@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_livebetter_domain_PersonActivities" modelAttribute="personActivities" path="/personactivitieses" render="${empty dependencies}" z="xXt6J61ejbHAtMKF3v/6tjpQhBQ=">
+        <field:select field="activityId" id="c_com_livebetter_domain_PersonActivities_activityId" itemValue="id" items="${activitieses}" path="/activitieses" z="6WheUfO9BqEJWopgqU0ByuNg0CU="/>
+        <field:select field="personId" id="c_com_livebetter_domain_PersonActivities_personId" itemValue="id" items="${personses}" path="/personses" z="xXnqca53LqjfT8Zum9MLJbLSX7g="/>
+        <field:checkbox field="isConsumed" id="c_com_livebetter_domain_PersonActivities_isConsumed" z="cwL1e9/vyVfeq0/khkoWq+bqh6g="/>
+        <field:datetime dateTimePattern="${personActivities_datetimeofconsumtion_date_format}" field="datetimeOfConsumtion" id="c_com_livebetter_domain_PersonActivities_datetimeOfConsumtion" z="j0ra1ZUIfTsZaGDHHb5xFJLlfKI="/>
+        <field:input field="quantity" id="c_com_livebetter_domain_PersonActivities_quantity" validationMessageCode="field_invalid_number" z="gf76W6s/fkkEmjWf5JDYQ+jBizk="/>
+        <field:input field="createdBy" id="c_com_livebetter_domain_PersonActivities_createdBy" validationMessageCode="field_invalid_integer" z="FV81DVp+MaYcJBuZ63zwKOSiOgU="/>
+        <field:datetime dateTimePattern="${personActivities_createddatetime_date_format}" field="createdDatetime" id="c_com_livebetter_domain_PersonActivities_createdDatetime" z="F1bUEso2CrqM45v/YoWtI9Ti1pY="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_livebetter_domain_PersonActivities" render="${not empty dependencies}" z="Y0Gs0tR5+1/kXQAdoiOu5cKKM/g="/>
+</div>

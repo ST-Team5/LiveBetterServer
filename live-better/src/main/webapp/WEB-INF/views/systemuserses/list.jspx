@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_livebetter_domain_SystemUsers" items="${systemuserses}" z="R90bhij0B3MOgG/+ZxC7Qqh0NLQ=">
+        <table:table data="${systemuserses}" id="l_com_livebetter_domain_SystemUsers" path="/systemuserses" z="UhpZV5zjr+RfsvbKju33ZjrzBtM=">
+            <table:column id="c_com_livebetter_domain_SystemUsers_userRoleId" property="userRoleId" z="+r71IEJTUCC9DDv4p+3O9Q5Ieq0="/>
+            <table:column id="c_com_livebetter_domain_SystemUsers_username" property="username" z="jl7iPqoDBcz6ysCROabXurGFGhA="/>
+            <table:column id="c_com_livebetter_domain_SystemUsers_password" property="password" z="Ngf/PvOogf78eZXXu2OrOjJhOq4="/>
+            <table:column id="c_com_livebetter_domain_SystemUsers_createdBy" property="createdBy" z="R11tBbGwoE7L2ecChQ8JpRYy6e8="/>
+            <table:column calendar="true" dateTimePattern="${systemUsers_createddatetime_date_format}" id="c_com_livebetter_domain_SystemUsers_createdDatetime" property="createdDatetime" z="zKJAn6u7b1oqxWMbGLgp0CxV/Ng="/>
+        </table:table>
+    </page:list>
+</div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_livebetter_domain_Activities" items="${activitieses}" z="P/Q8wQXCAwyZ2gGm1l3jbB0p1Y4=">
+        <table:table data="${activitieses}" id="l_com_livebetter_domain_Activities" path="/activitieses" z="Fbi6rfrbSxkNspLNdDrSIEcTZhM=">
+            <table:column id="c_com_livebetter_domain_Activities_name" property="name" z="bKevax3VnGMlnFBmeh646IIH12Q="/>
+            <table:column id="c_com_livebetter_domain_Activities_type" property="type" z="HsuQcNNhurgfPVzXtg3DDsk18io="/>
+            <table:column id="c_com_livebetter_domain_Activities_caloriesPerHour" property="caloriesPerHour" z="5javE9dAryKngk9Goni6D230U3E="/>
+            <table:column id="c_com_livebetter_domain_Activities_createdBy" property="createdBy" z="Gf1JHjuKWLC7Jugun0o9SuimTic="/>
+            <table:column calendar="true" dateTimePattern="${activities_createddatetime_date_format}" id="c_com_livebetter_domain_Activities_createdDatetime" property="createdDatetime" z="5Ha9wJf+JnuCRAoZUOZJxuvWc/A="/>
+        </table:table>
+    </page:list>
+</div>

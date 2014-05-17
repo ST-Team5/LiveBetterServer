@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_livebetter_domain_Persons" modelAttribute="persons" path="/personses" versionField="none" z="xGyxVRUXeGfc22phe8uKa6AoJKM=">
+        <field:simple field="personActivitieses" id="c_com_livebetter_domain_Persons_personActivitieses" messageCode="entity_reference_not_managed" messageCodeAttribute="Person Activities" z="0pno2h4SDmMhw8YvzWYEqoAJp4k="/>
+        <field:simple field="personDrinkss" id="c_com_livebetter_domain_Persons_personDrinkss" messageCode="entity_reference_not_managed" messageCodeAttribute="Person Drinks" z="fkaMpN247UdnvF8xe2h3bc2cTdM="/>
+        <field:simple field="personMealss" id="c_com_livebetter_domain_Persons_personMealss" messageCode="entity_reference_not_managed" messageCodeAttribute="Person Meals" z="CHT+KFN3Y0Hn9zABSv6it+YyVyE="/>
+        <field:simple field="usersToPersonss" id="c_com_livebetter_domain_Persons_usersToPersonss" messageCode="entity_reference_not_managed" messageCodeAttribute="Users To Persons" z="CDiL80BszoXKCEZfSrkdHBuX6A0="/>
+        <field:select field="metabolismId" id="c_com_livebetter_domain_Persons_metabolismId" itemValue="id" items="${metabolismses}" path="/metabolismses" z="EDnFrZJZGkFxHnLfGgmoFa/OIDE="/>
+        <field:input field="firstname" id="c_com_livebetter_domain_Persons_firstname" required="true" z="5XshE99w2ZTWbrUiDjD5slS1KvA="/>
+        <field:input field="middlename" id="c_com_livebetter_domain_Persons_middlename" z="nK1spQHu+FrRVnCO5ZeOuharquU="/>
+        <field:input field="lastname" id="c_com_livebetter_domain_Persons_lastname" z="3hO7jLEi0cxWuZr/3tb4IfnsBOg="/>
+        <field:datetime dateTimePattern="${persons_dateofbirth_date_format}" field="dateOfBirth" id="c_com_livebetter_domain_Persons_dateOfBirth" z="XY5EYx+ORas1FQQhQC2jp6zTKf8="/>
+        <field:input field="height" id="c_com_livebetter_domain_Persons_height" validationMessageCode="field_invalid_integer" z="7U8nQveLCq1oHm9i4RlX/XuRGpY="/>
+        <field:input field="weight" id="c_com_livebetter_domain_Persons_weight" validationMessageCode="field_invalid_integer" z="vPZXYc73MWrpscAIKkYh5szjt9o="/>
+        <field:input field="createdBy" id="c_com_livebetter_domain_Persons_createdBy" validationMessageCode="field_invalid_integer" z="QtLiHCBOzMw4OA6uIQg28Pz7qNk="/>
+        <field:datetime dateTimePattern="${persons_createddatetime_date_format}" field="createdDatetime" id="c_com_livebetter_domain_Persons_createdDatetime" required="true" z="7/WSkOR7f0dBw3kxx3pTjBtwEJc="/>
+        <field:datetime dateTimePattern="${persons_modifieddatetime_date_format}" field="modifiedDatetime" id="c_com_livebetter_domain_Persons_modifiedDatetime" required="true" z="y7vX+FGibedilUBxKB8Zy8xd1i0="/>
+    </form:update>
+</div>

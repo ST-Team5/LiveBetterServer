@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_livebetter_domain_Persons" object="${persons}" path="/personses" z="+R1jEmkMxyz2X+a7mDR4l3OoU7I=">
+        <field:display field="metabolismId" id="s_com_livebetter_domain_Persons_metabolismId" object="${persons}" z="+DSyBgjTHonNgEW2n85QDc2Huow="/>
+        <field:display field="firstname" id="s_com_livebetter_domain_Persons_firstname" object="${persons}" z="Vlc/B0XGyPgfdy5iiqkKKi0ewe8="/>
+        <field:display field="middlename" id="s_com_livebetter_domain_Persons_middlename" object="${persons}" z="UzM1VY615wInyjoywvQjTAWoe7Q="/>
+        <field:display field="lastname" id="s_com_livebetter_domain_Persons_lastname" object="${persons}" z="a/IMornQ4+zpMt24OjKYavpMaFA="/>
+        <field:display calendar="true" dateTimePattern="${persons_dateofbirth_date_format}" field="dateOfBirth" id="s_com_livebetter_domain_Persons_dateOfBirth" object="${persons}" z="Alv/A+GfOavtJS83+MmU3WlW0DY="/>
+        <field:display field="height" id="s_com_livebetter_domain_Persons_height" object="${persons}" z="ea9Lw2gj30f8aWq2xCKDoDf0m7g="/>
+        <field:display field="weight" id="s_com_livebetter_domain_Persons_weight" object="${persons}" z="Xm62C5kIAEdt5bo3OJVk0OTdokc="/>
+        <field:display field="createdBy" id="s_com_livebetter_domain_Persons_createdBy" object="${persons}" z="NT9dP8gCHt81rC6nBzp7ljVW05g="/>
+        <field:display calendar="true" dateTimePattern="${persons_createddatetime_date_format}" field="createdDatetime" id="s_com_livebetter_domain_Persons_createdDatetime" object="${persons}" z="DOxzXV2w39ubtE8rbwOx/chTBJ4="/>
+        <field:display calendar="true" dateTimePattern="${persons_modifieddatetime_date_format}" field="modifiedDatetime" id="s_com_livebetter_domain_Persons_modifiedDatetime" object="${persons}" z="12rBfIlmEDPViqiwgoYYz3dfohw="/>
+    </page:show>
+</div>

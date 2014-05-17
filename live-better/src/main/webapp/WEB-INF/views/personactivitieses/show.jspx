@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_livebetter_domain_PersonActivities" object="${personactivities}" path="/personactivitieses" z="8sNVkNjpUIIBSpOgNgndzR3K+Wk=">
+        <field:display field="activityId" id="s_com_livebetter_domain_PersonActivities_activityId" object="${personactivities}" z="MPXlr4inX+gyCjEbFgFEozmmfWM="/>
+        <field:display field="personId" id="s_com_livebetter_domain_PersonActivities_personId" object="${personactivities}" z="QgYN/jG5hPlLM+QYfImRMogVevM="/>
+        <field:display field="isConsumed" id="s_com_livebetter_domain_PersonActivities_isConsumed" object="${personactivities}" z="LqH7zMvsjFbpd8mhTuQ69wVOvyw="/>
+        <field:display calendar="true" dateTimePattern="${personActivities_datetimeofconsumtion_date_format}" field="datetimeOfConsumtion" id="s_com_livebetter_domain_PersonActivities_datetimeOfConsumtion" object="${personactivities}" z="KO2WJsdHD3KZrgvR0XavKbQn0qI="/>
+        <field:display field="quantity" id="s_com_livebetter_domain_PersonActivities_quantity" object="${personactivities}" z="CCsK+z7m8eE5d1YFKiZnzNiTo4c="/>
+        <field:display field="createdBy" id="s_com_livebetter_domain_PersonActivities_createdBy" object="${personactivities}" z="OGziMTxAxj/8FDaK4HX0re7cQaQ="/>
+        <field:display calendar="true" dateTimePattern="${personActivities_createddatetime_date_format}" field="createdDatetime" id="s_com_livebetter_domain_PersonActivities_createdDatetime" object="${personactivities}" z="2yXX484rEUxEuwuS3O0GtJ1/ieI="/>
+    </page:show>
+</div>

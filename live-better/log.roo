@@ -1,0 +1,40 @@
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-05-11 18:09:25
+project --topLevelPackage com.livebetter --projectName live-better --java 6
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-05-11 18:09:27
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-05-11 18:09:32
+hint
+jpa setup --database POSTGRES --provider HIBERNATE 
+hint
+entity jpa --class com.livebetter.SystemUser 
+// [failed] database reverse engineer --schema "public"
+// [failed] database reverse engineer --schema "public"
+// [failed] addon install id --searchResultId "9.1.0.901-1_0001 Postgres"
+// [failed] addon info id --searchResultId "9.1.0.901-1_0001 Postgres"
+// [failed] addon info id --searchResultId "9.1.0.901-1_0001"
+// [failed] database reverse engineer --schema "public"
+// [failed] database reverse engineer --schema "public"
+// [failed] database reverse engineer --schema "public"
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+osgi obr start --bundleSymbolicName org.springframework.roo.wrapping.postgresql-jdbc3
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml
+addon install id --searchResultId 02
+database reverse engineer --schema "public"
+database reverse engineer --schema public
+database reverse engineer --schema public 
+database reverse engineer --schema information_schema 
+database reverse engineer --schema pg_catalog 
+database introspect --schema public 
+database reverse engineer --schema "public"
+database reverse engineer --schema "test"
+database reverse engineer --schema "test"
+web mvc setup
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-05-11 21:18:43
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-05-17 10:29:57
+database reverse engineer --schema "public" --package ~.domain
+database reverse engineer --schema dbo --package ~.domain
+database reverse engineer --schema "live-better" --package ~.domain
+database reverse engineer --schema "public" --package ~.domain
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-05-17 10:50:31
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-05-17 10:53:37
+service all --interfacePackage com.livebetter.services 
+web mvc all --package com.livebetter.controllers

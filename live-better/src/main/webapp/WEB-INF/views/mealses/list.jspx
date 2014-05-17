@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_livebetter_domain_Meals" items="${mealses}" z="8yvAJQNXqU4oo4ipJqf31mdZ2PI=">
+        <table:table data="${mealses}" id="l_com_livebetter_domain_Meals" path="/mealses" z="j4GlT0Zd2pEHCdpRC6PpIS/qwKk=">
+            <table:column id="c_com_livebetter_domain_Meals_name" property="name" z="k0g349fCHpJ2JeyIkthP6Y04zA0="/>
+            <table:column id="c_com_livebetter_domain_Meals_type" property="type" z="BInbNjjTks7Q8kQz0qpo7P514rs="/>
+            <table:column id="c_com_livebetter_domain_Meals_carbohydrates" property="carbohydrates" z="vE8xd+eJNa0igv5wojZ2DSanLgQ="/>
+            <table:column id="c_com_livebetter_domain_Meals_proteins" property="proteins" z="Jkb6jYHJOvnZpozGrBHXlfKm1kY="/>
+            <table:column id="c_com_livebetter_domain_Meals_fat" property="fat" z="sEOUIAfKWvyiicRcJem+rWQz5gw="/>
+        </table:table>
+    </page:list>
+</div>

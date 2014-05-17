@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_livebetter_domain_Drinks" modelAttribute="drinks" path="/drinkses" versionField="none" z="uAGBEy3X9IC0gfHQzuSI/8z6ukQ=">
+        <field:simple field="personDrinkss" id="c_com_livebetter_domain_Drinks_personDrinkss" messageCode="entity_reference_not_managed" messageCodeAttribute="Person Drinks" z="I9EZYWv5nYEuFE7JERl0wXmayow="/>
+        <field:input field="name" id="c_com_livebetter_domain_Drinks_name" required="true" z="73/RhMa3RNIgGRNxI24erf57M+Q="/>
+        <field:input field="type" id="c_com_livebetter_domain_Drinks_type" required="true" z="TdtGJPhVaiPyY5WM+JEqCZdePsI="/>
+        <field:input field="carbohydrates" id="c_com_livebetter_domain_Drinks_carbohydrates" validationMessageCode="field_invalid_integer" z="3osJ1sdGb8VzxQvqsY1TaA5bd94="/>
+        <field:input field="proteins" id="c_com_livebetter_domain_Drinks_proteins" validationMessageCode="field_invalid_integer" z="6Cva19QSSr3+dORMIp2PJLC8pXU="/>
+        <field:input field="fat" id="c_com_livebetter_domain_Drinks_fat" validationMessageCode="field_invalid_integer" z="oYCFznw/rzLeDE1hXuVRggKBR1M="/>
+        <field:input field="calories" id="c_com_livebetter_domain_Drinks_calories" validationMessageCode="field_invalid_integer" z="kR1V7RPgo1SInFCqO4e2AFVlnnA="/>
+        <field:input field="createdBy" id="c_com_livebetter_domain_Drinks_createdBy" validationMessageCode="field_invalid_integer" z="mCLm/GXTppMa9lwS1NYpwbK+zQE="/>
+        <field:datetime dateTimePattern="${drinks_createddatetime_date_format}" field="createdDatetime" id="c_com_livebetter_domain_Drinks_createdDatetime" z="TzZnL4/a9hvJOXKKGTKwxFu6hvU="/>
+        <field:datetime dateTimePattern="${drinks_modifieddatetime_date_format}" field="modifiedDatetime" id="c_com_livebetter_domain_Drinks_modifiedDatetime" z="YO+IeXeV2leGEdQFLAi7OEcwVJk="/>
+    </form:update>
+</div>

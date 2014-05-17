@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_livebetter_domain_SystemUserRoles" object="${systemuserroles}" path="/systemuserroleses" z="PRoORzP6MPVD4S7zZj5oDCdwkss=">
+        <field:display field="name" id="s_com_livebetter_domain_SystemUserRoles_name" object="${systemuserroles}" z="MIEA8dLwx3KWd2iukcdy//tq1OA="/>
+        <field:display field="description" id="s_com_livebetter_domain_SystemUserRoles_description" object="${systemuserroles}" z="ltCxqLgvtnHNNK5z71YrVcn6mpQ="/>
+        <field:display field="createdBy" id="s_com_livebetter_domain_SystemUserRoles_createdBy" object="${systemuserroles}" z="q+GJqm/Xo+n247kpS+o43fXENQ4="/>
+        <field:display field="level" id="s_com_livebetter_domain_SystemUserRoles_level" object="${systemuserroles}" z="AWxGX837/Ns8eUatQtHvZPJzIQU="/>
+        <field:display calendar="true" dateTimePattern="${systemUserRoles_createddatetime_date_format}" field="createdDatetime" id="s_com_livebetter_domain_SystemUserRoles_createdDatetime" object="${systemuserroles}" z="QAPiP//qh3az3LBL5FbZCzYMkEQ="/>
+        <field:display calendar="true" dateTimePattern="${systemUserRoles_modifieddatetime_date_format}" field="modifiedDatetime" id="s_com_livebetter_domain_SystemUserRoles_modifiedDatetime" object="${systemuserroles}" z="PPVeEXNBCezHwS7D/TTmrEDJIyc="/>
+    </page:show>
+</div>
