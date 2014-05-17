@@ -1,9 +1,7 @@
 package com.livebetter.services;
 import com.livebetter.domain.Meal;
 import java.util.List;
-import org.springframework.roo.addon.layers.service.RooService;
 
-@RooService(domainTypes = { com.livebetter.domain.Meal.class })
 public interface MealService {
 
 	public abstract long countAllMealses();

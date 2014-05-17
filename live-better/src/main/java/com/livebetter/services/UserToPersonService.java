@@ -1,9 +1,7 @@
 package com.livebetter.services;
 import com.livebetter.domain.UserToPerson;
 import java.util.List;
-import org.springframework.roo.addon.layers.service.RooService;
 
-@RooService(domainTypes = { com.livebetter.domain.UserToPerson.class })
 public interface UserToPersonService {
 
 	public abstract long countAllUsersToPersonses();

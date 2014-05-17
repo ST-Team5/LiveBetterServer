@@ -9,7 +9,6 @@ import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +21,6 @@ import org.springframework.web.util.WebUtils;
 
 @RequestMapping("/personactivitieses")
 @Controller
-@RooWebScaffold(path = "personactivitieses", formBackingObject = PersonActivity.class)
 public class PersonActivityController {
 
 	@Autowired

@@ -1,9 +1,7 @@
 package com.livebetter.services;
 import com.livebetter.domain.Drink;
 import java.util.List;
-import org.springframework.roo.addon.layers.service.RooService;
 
-@RooService(domainTypes = { com.livebetter.domain.Drink.class })
 public interface DrinkService {
 
 	public abstract long countAllDrinkses();

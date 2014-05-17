@@ -22,23 +22,15 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.roo.addon.dbre.RooDbManaged;
-import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(schema = "public",name = "system_users")
 @Configurable
-@RooJavaBean
-@RooJpaActiveRecord(versionField = "", table = "system_users", schema = "public")
-@RooDbManaged(automaticallyDelete = true)
-@RooToString(excludeFields = { "usersToPersonss", "userRoleId" })
 public class SystemUser {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "system_users_seq")
+    @GeneratedValue(generator = "system_users_seq")
 	@GenericGenerator(name = "system_users_seq", strategy = "sequence-identity", parameters = @Parameter(name = "sequence", value = "system_users_id_seq"))
     @Column(name = "id")
     private Long id;

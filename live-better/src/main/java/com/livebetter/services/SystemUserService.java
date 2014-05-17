@@ -1,9 +1,7 @@
 package com.livebetter.services;
 import com.livebetter.domain.SystemUser;
 import java.util.List;
-import org.springframework.roo.addon.layers.service.RooService;
 
-@RooService(domainTypes = { com.livebetter.domain.SystemUser.class })
 public interface SystemUserService {
 
 	public abstract long countAllSystemUserses();

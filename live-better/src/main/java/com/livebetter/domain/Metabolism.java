@@ -20,19 +20,11 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.roo.addon.dbre.RooDbManaged;
-import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.transaction.annotation.Transactional;
 
 @Configurable
 @Entity
 @Table(schema = "public",name = "metabolisms")
-@RooJavaBean
-@RooJpaActiveRecord(versionField = "", table = "metabolisms", schema = "public")
-@RooDbManaged(automaticallyDelete = true)
-@RooToString(excludeFields = { "personss" })
 public class Metabolism {
 
 	@OneToMany(mappedBy = "metabolismId")
@@ -187,7 +179,7 @@ public class Metabolism {
     }
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "metabolisms_seq")
+    @GeneratedValue(generator = "metabolisms_seq")
 	@GenericGenerator(name = "metabolisms_seq", strategy = "sequence-identity", parameters = @Parameter(name = "sequence", value = "metabolisms_id_seq"))
     @Column(name = "id")
     private Long id;

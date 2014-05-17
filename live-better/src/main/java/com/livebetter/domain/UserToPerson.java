@@ -15,19 +15,11 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.roo.addon.dbre.RooDbManaged;
-import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.transaction.annotation.Transactional;
 
 @Configurable
 @Entity
 @Table(schema = "public",name = "users_to_persons")
-@RooJavaBean
-@RooJpaActiveRecord(versionField = "", table = "users_to_persons", schema = "public")
-@RooDbManaged(automaticallyDelete = true)
-@RooToString(excludeFields = { "personId", "userId" })
 public class UserToPerson {
 
 	@PersistenceContext
@@ -119,7 +111,7 @@ public class UserToPerson {
 
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "users_to_persons_seq")
+    @GeneratedValue(generator = "users_to_persons_seq")
 	@GenericGenerator(name = "users_to_persons_seq", strategy = "sequence-identity", parameters = @Parameter(name = "sequence", value = "users_to_persons_id_seq"))
     @Column(name = "id")
     private Long id;

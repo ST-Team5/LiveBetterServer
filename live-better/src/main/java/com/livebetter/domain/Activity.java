@@ -20,19 +20,11 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.roo.addon.dbre.RooDbManaged;
-import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(schema = "public",name = "activities")
 @Configurable
-@RooJavaBean
-@RooJpaActiveRecord(versionField = "", table = "activities", schema = "public")
-@RooDbManaged(automaticallyDelete = true)
-@RooToString(excludeFields = { "personActivitieses" })
 public class Activity {
 
 	@PersistenceContext
@@ -123,7 +115,7 @@ public class Activity {
     }
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "activities_seq")
+    @GeneratedValue(generator = "activities_seq")
 	@GenericGenerator(name = "activities_seq", strategy = "sequence-identity", parameters = @Parameter(name = "sequence", value = "activities_id_seq"))
     @Column(name = "id")
     private Long id;

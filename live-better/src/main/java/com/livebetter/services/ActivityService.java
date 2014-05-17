@@ -1,9 +1,7 @@
 package com.livebetter.services;
 import com.livebetter.domain.Activity;
 import java.util.List;
-import org.springframework.roo.addon.layers.service.RooService;
 
-@RooService(domainTypes = { com.livebetter.domain.Activity.class })
 public interface ActivityService {
 
 	public abstract long countAllActivitieses();

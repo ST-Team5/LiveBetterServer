@@ -1,9 +1,7 @@
 package com.livebetter.services;
 import com.livebetter.domain.SystemUserRole;
 import java.util.List;
-import org.springframework.roo.addon.layers.service.RooService;
 
-@RooService(domainTypes = { com.livebetter.domain.SystemUserRole.class })
 public interface SystemUserRoleService {
 
 	public abstract long countAllSystemUserRoleses();
