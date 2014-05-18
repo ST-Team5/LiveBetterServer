@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_livebetter_domain_PersonDrinks" object="${persondrinks}" path="/persondrinkses" z="kftYXT7B5EZ+zsX+LGIpkk5Gc30=">
+        <field:display field="drinkId" id="s_com_livebetter_domain_PersonDrinks_drinkId" object="${persondrinks}" z="JktIMYDCQj+fi5Ce+erB1tAJQYM="/>
+        <field:display field="personId" id="s_com_livebetter_domain_PersonDrinks_personId" object="${persondrinks}" z="HgiXJ/62hJyBF+gg/eRQf+vRELs="/>
+        <field:display field="isConsumed" id="s_com_livebetter_domain_PersonDrinks_isConsumed" object="${persondrinks}" z="edFgv+E6B6JlYHOtsWFSb2lSCnc="/>
+        <field:display calendar="true" dateTimePattern="${personDrinks_datetimeofconsumtion_date_format}" field="datetimeOfConsumtion" id="s_com_livebetter_domain_PersonDrinks_datetimeOfConsumtion" object="${persondrinks}" z="pMt4NIpzq1/3Kl+b0TenqWSX6R4="/>
+        <field:display field="quantity" id="s_com_livebetter_domain_PersonDrinks_quantity" object="${persondrinks}" z="JN3ztrK5OBJkOM6ZyUSxK4UwCHs="/>
+        <field:display field="createdBy" id="s_com_livebetter_domain_PersonDrinks_createdBy" object="${persondrinks}" z="nR+9evQNeU+AH/tjYTc6xh/RkZ8="/>
+        <field:display calendar="true" dateTimePattern="${personDrinks_createddatetime_date_format}" field="createdDatetime" id="s_com_livebetter_domain_PersonDrinks_createdDatetime" object="${persondrinks}" z="HHCkgUxBhgK2r0hUNvfXRW0/v9w="/>
+    </page:show>
+</div>

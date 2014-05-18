@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_livebetter_domain_Drinks" items="${drinkses}" z="GgvtPq/CC6M9AB/CfHV1MQNZ7gA=">
+        <table:table data="${drinkses}" id="l_com_livebetter_domain_Drinks" path="/drinkses" z="crvgrQU8P0HGJm5y8xhIrrZ/7Q8=">
+            <table:column id="c_com_livebetter_domain_Drinks_name" property="name" z="tpLoyJiphPUKP67Gv5s4hxyYkow="/>
+            <table:column id="c_com_livebetter_domain_Drinks_type" property="type" z="x7gQtXa30BfEu3C+52mYTgM4bwk="/>
+            <table:column id="c_com_livebetter_domain_Drinks_carbohydrates" property="carbohydrates" z="FeNylVAkAFX7Z3ZNV+POJgS16jM="/>
+            <table:column id="c_com_livebetter_domain_Drinks_proteins" property="proteins" z="sauijx2gfK+JIkUlOOeKbSO1tXg="/>
+            <table:column id="c_com_livebetter_domain_Drinks_fat" property="fat" z="5v6sDGyveJHeeRFBwgbEgrAQJ84="/>
+        </table:table>
+    </page:list>
+</div>

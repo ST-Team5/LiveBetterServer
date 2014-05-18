@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_livebetter_domain_Metabolisms" object="${metabolisms}" path="/metabolismses" z="pBB0JZ0p0NFLZd2GWqfH1+2mXEE=">
+        <field:display field="name" id="s_com_livebetter_domain_Metabolisms_name" object="${metabolisms}" z="dDM13GBgqURxc/NED+icIVJ1j/U="/>
+        <field:display field="createdBy" id="s_com_livebetter_domain_Metabolisms_createdBy" object="${metabolisms}" z="rmyvugqFnIfIqlPy1Mtl+Hywl9Y="/>
+        <field:display calendar="true" dateTimePattern="${metabolisms_createddatetime_date_format}" field="createdDatetime" id="s_com_livebetter_domain_Metabolisms_createdDatetime" object="${metabolisms}" z="CtSShQoBF5SSy6y58muemuNsNeY="/>
+        <field:display calendar="true" dateTimePattern="${metabolisms_modifieddatetime_date_format}" field="modifiedDatetime" id="s_com_livebetter_domain_Metabolisms_modifiedDatetime" object="${metabolisms}" z="RWx58wvfPULfCn06hg7OO6q5vAA="/>
+    </page:show>
+</div>

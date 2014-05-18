@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_livebetter_domain_Activities" object="${activities}" path="/activitieses" z="l9VhdpFF2iOczjKyvIbM2rLbjLw=">
+        <field:display field="name" id="s_com_livebetter_domain_Activities_name" object="${activities}" z="j0xXEJL31fStel+dvJdh5pC+FgM="/>
+        <field:display field="type" id="s_com_livebetter_domain_Activities_type" object="${activities}" z="RHbZ9/8rjiG7fbPME8RngiWE8rI="/>
+        <field:display field="caloriesPerHour" id="s_com_livebetter_domain_Activities_caloriesPerHour" object="${activities}" z="ZxHCr0ZkRkWveajB7wY5bTOZaqk="/>
+        <field:display field="createdBy" id="s_com_livebetter_domain_Activities_createdBy" object="${activities}" z="mi1dlHCLNcBCX7yBkNmeL9/0bYE="/>
+        <field:display calendar="true" dateTimePattern="${activities_createddatetime_date_format}" field="createdDatetime" id="s_com_livebetter_domain_Activities_createdDatetime" object="${activities}" z="IQB9emVyxs1F3aTbiTfXshGb5mk="/>
+        <field:display calendar="true" dateTimePattern="${activities_modifieddatetime_date_format}" field="modifiedDatetime" id="s_com_livebetter_domain_Activities_modifiedDatetime" object="${activities}" z="pW3L22oS8YtifUonO5MCUxb7bR0="/>
+    </page:show>
+</div>
