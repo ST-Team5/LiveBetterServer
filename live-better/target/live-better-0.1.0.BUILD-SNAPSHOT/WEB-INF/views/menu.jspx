@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+        <menu:category id="c_personactivities" z="BdyfV59Cs2SYR9y/rqr3wz2L03Y=">
+            <menu:item id="i_personactivities_new" messageCode="global_menu_new" url="/personactivitieses?form" z="wp7jznfRv8wXw5i+oKmLdWMxpPo="/>
+            <menu:item id="i_personactivities_list" messageCode="global_menu_list" url="/personactivitieses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="SF8iWXN+SQKoOQ+qS1N/5U2veUM="/>
+        </menu:category>
+        <menu:category id="c_persondrinks" z="6rqxlb1y1C5uYvZPtLGYYDxbHaM=">
+            <menu:item id="i_persondrinks_new" messageCode="global_menu_new" url="/persondrinkses?form" z="tdKUiwzr5wwavRVcHj4Oo9jMF5k="/>
+            <menu:item id="i_persondrinks_list" messageCode="global_menu_list" url="/persondrinkses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="1T8D4qQ5HZb2ySElOyYK0FwNZXU="/>
+        </menu:category>
+        <menu:category id="c_drinks" z="Q/Lg8EZxetHLi7EhbzYKSXRiccc=">
+            <menu:item id="i_drinks_new" messageCode="global_menu_new" url="/drinkses?form" z="TB3ylWRwn2yOL7ROgrNnXCXmg2k="/>
+            <menu:item id="i_drinks_list" messageCode="global_menu_list" url="/drinkses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="k99HukMmyHMbDZnqDKLreVy3mXA="/>
+        </menu:category>
+        <menu:category id="c_personmeals" z="ZjXihpkpemahnTaH6arbwjuZaKw=">
+            <menu:item id="i_personmeals_new" messageCode="global_menu_new" url="/personmealses?form" z="wG6ZKhWtCgRiDKbsKE7cVnoW9ZU="/>
+            <menu:item id="i_personmeals_list" messageCode="global_menu_list" url="/personmealses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="FaqO7RUuhWMnqMA63zKifpzWCkU="/>
+        </menu:category>
+        <menu:category id="c_systemuserroles" z="s1Hnq+9qAz4u71nXly/J5y6ITTE=">
+            <menu:item id="i_systemuserroles_new" messageCode="global_menu_new" url="/systemuserroleses?form" z="4bCINu26RHPUgmLAwKmOMvZESCc="/>
+            <menu:item id="i_systemuserroles_list" messageCode="global_menu_list" url="/systemuserroleses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="zaq8Ko+w+lxkCoBYNxxMrfQVvf4="/>
+        </menu:category>
+        <menu:category id="c_metabolisms" z="ezM1ZP/qcs6FYccDZaJz+WmDFp0=">
+            <menu:item id="i_metabolisms_new" messageCode="global_menu_new" url="/metabolismses?form" z="dImxfbl9IMvSn/aATWuFYcLiDsA="/>
+            <menu:item id="i_metabolisms_list" messageCode="global_menu_list" url="/metabolismses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="1aPt9UEG9AOWZBM2hNx1xZ9VBP0="/>
+        </menu:category>
+        <menu:category id="c_activities" z="SZkkuJfmOxHoY4CNQ7C1mQv3TEw=">
+            <menu:item id="i_activities_new" messageCode="global_menu_new" url="/activitieses?form" z="Q0GynU8GX4cyZsokfowz0Mo5UQo="/>
+            <menu:item id="i_activities_list" messageCode="global_menu_list" url="/activitieses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjIxFI2+RyNcmVB8e6uf2zAhmx0="/>
+        </menu:category>
+        <menu:category id="c_systemusers" z="dTYRkKoSurZI7QEN8WmEPxlaP6E=">
+            <menu:item id="i_systemusers_new" messageCode="global_menu_new" url="/systemuserses?form" z="BHtmuDhhJrvxgD1JYA2mRSq2Rys="/>
+            <menu:item id="i_systemusers_list" messageCode="global_menu_list" url="/systemuserses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="CZlm2nZ2H3mbQg+N0wAPiiBKCbk="/>
+        </menu:category>
+        <menu:category id="c_meals" z="hZa4GXA0gVx9EhQcFXaw4zeL8L4=">
+            <menu:item id="i_meals_new" messageCode="global_menu_new" url="/mealses?form" z="2IhwGlPAUqOZ+Krl2lP1wUFmKj0="/>
+            <menu:item id="i_meals_list" messageCode="global_menu_list" url="/mealses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="h4x4LxRpBYYrbyZrUbX4DMD0nKk="/>
+        </menu:category>
+        <menu:category id="c_userstopersons" z="Ma8+ec1cRLn0/qE9PqTWrlLM7WQ=">
+            <menu:item id="i_userstopersons_new" messageCode="global_menu_new" url="/userstopersonses?form" z="4Xb/JaXcuAK3xm/7S5t/B2WEUj8="/>
+            <menu:item id="i_userstopersons_list" messageCode="global_menu_list" url="/userstopersonses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="42oh9qP9087/7sboo9fzbrT6b2s="/>
+        </menu:category>
+        <menu:category id="c_persons" z="XvX0d+IwpzSl2Eo0r/qTlvuwahA=">
+            <menu:item id="i_persons_new" messageCode="global_menu_new" url="/personses?form" z="MWkcfN1qWT4eb7GEbKk+vEfUXVc="/>
+            <menu:item id="i_persons_list" messageCode="global_menu_list" url="/personses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="hAXLY7YVZ4aCQf2XG1T7qBH58Zo="/>
+        </menu:category>
+    </menu:menu>
+</div>

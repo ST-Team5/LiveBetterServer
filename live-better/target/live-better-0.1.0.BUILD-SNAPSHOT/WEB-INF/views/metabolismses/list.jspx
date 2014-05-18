@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_livebetter_domain_Metabolisms" items="${metabolismses}" z="2L26XbTiOCdz06c6w4DGAZ814jo=">
+        <table:table data="${metabolismses}" id="l_com_livebetter_domain_Metabolisms" path="/metabolismses" z="hJpCUcWswnx6lOMpURqGhMBiFY0=">
+            <table:column id="c_com_livebetter_domain_Metabolisms_name" property="name" z="5kjX1KLXpYAiWKtI1uLNGBkRENo="/>
+            <table:column id="c_com_livebetter_domain_Metabolisms_createdBy" property="createdBy" z="2vuWLSea5IAu3s/aMpL27c+ZVdQ="/>
+            <table:column calendar="true" dateTimePattern="${metabolisms_createddatetime_date_format}" id="c_com_livebetter_domain_Metabolisms_createdDatetime" property="createdDatetime" z="WDNkIMD98c+IXIcEdPdocSOamxw="/>
+            <table:column calendar="true" dateTimePattern="${metabolisms_modifieddatetime_date_format}" id="c_com_livebetter_domain_Metabolisms_modifiedDatetime" property="modifiedDatetime" z="WRUVzc7cP0hjemZiJU0rEjOZkb0="/>
+        </table:table>
+    </page:list>
+</div>
