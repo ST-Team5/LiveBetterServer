@@ -127,7 +127,7 @@ public class MealController {
         meal.setCreatedBy(1337l);
         meal.setCreatedDatetime(Calendar.getInstance());
         meal.setModifiedDatetime(Calendar.getInstance());
-        meal.setType("meal");
+        meal.setType(mealAsJson.getType());
         mealService.saveMeals(meal);
     }
 }

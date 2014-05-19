@@ -127,7 +127,7 @@ public class DrinkController {
         drink.setCreatedBy(1337l);
         drink.setCreatedDatetime(Calendar.getInstance());
         drink.setModifiedDatetime(Calendar.getInstance());
-        drink.setType("drink");
+        drink.setType(drinkAsJson.getType());
         drinkService.saveDrinks(drink);
     }
 }
