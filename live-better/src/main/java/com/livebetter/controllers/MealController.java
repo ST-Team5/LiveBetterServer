@@ -1,8 +1,10 @@
 package com.livebetter.controllers;
+import com.livebetter.domain.Drink;
 import com.livebetter.domain.Meal;
 import com.livebetter.services.MealService;
 import com.livebetter.services.PersonMealService;
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
@@ -11,10 +13,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
@@ -115,5 +114,20 @@ public class MealController {
             pathSegment = UriUtils.encodePathSegment(pathSegment, enc);
         } catch (UnsupportedEncodingException uee) {}
         return pathSegment;
+    }
+
+    @RequestMapping(value = "meals/insert", method = RequestMethod.POST, headers = {"Content-type=application/json"})
+    public @ResponseBody
+    void insertMeal(@RequestBody Meal mealAsJson) {
+        Meal meal = new Meal();
+        meal.setName(mealAsJson.getName());
+        meal.setCalories(mealAsJson.getCalories());
+        meal.setCarbohydrates(mealAsJson.getCarbohydrates());
+        meal.setFat(mealAsJson.getFat());
+        meal.setProteins(mealAsJson.getProteins());
+        meal.setCreatedBy(1337l);
+        meal.setCreatedDatetime(Calendar.getInstance());
+        meal.setModifiedDatetime(Calendar.getInstance());
+        mealService.saveMeals(meal);
     }
 }
