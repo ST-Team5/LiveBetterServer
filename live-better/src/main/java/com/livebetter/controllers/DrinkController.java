@@ -137,7 +137,11 @@ public class DrinkController {
     @RequestMapping(value = "list", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     List<Drink> list() {
-        return Drink.findAllDrinkses();
+        final List<Drink> drinkList = Drink.findAllDrinkses();
+        for (Drink drink : drinkList) {
+            drink.setPersonDrinkss(null);
+        }
+        return drinkList;
     }
 
     @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"}, produces = "application/json")

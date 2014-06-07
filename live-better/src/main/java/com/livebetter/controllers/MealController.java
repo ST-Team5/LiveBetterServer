@@ -133,7 +133,11 @@ public class MealController {
     @RequestMapping(value = "list", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     List<Meal> list() {
-        return Meal.findAllMealses();
+        final List<Meal> mealList = Meal.findAllMealses();
+        for (Meal meal : mealList) {
+            meal.setPersonMealss(null);
+        }
+        return mealList;
     }
 
     @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"}, produces = "application/json")

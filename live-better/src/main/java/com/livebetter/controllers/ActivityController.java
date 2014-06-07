@@ -143,7 +143,11 @@ public class ActivityController {
     @RequestMapping(value = "list", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     java.util.List<Activity> list() {
-        return Activity.findAllActivitieses();
+        java.util.List<Activity> activityList =  Activity.findAllActivitieses();
+        for (Activity activity : activityList) {
+            activity.setPersonActivitieses(null);
+        }
+        return activityList;
     }
 
     @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"}, produces = "application/json")
