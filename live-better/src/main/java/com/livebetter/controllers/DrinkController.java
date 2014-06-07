@@ -1,10 +1,10 @@
 package com.livebetter.controllers;
-import com.livebetter.domain.Activity;
-import com.livebetter.domain.Drink;
-import com.livebetter.domain.Meal;
+import com.livebetter.domain.*;
 import com.livebetter.services.DrinkService;
 import com.livebetter.services.PersonDrinkService;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -25,9 +25,9 @@ public class DrinkController {
 
 	@Autowired
     DrinkService drinkService;
-//
-//	@Autowired
-//    PersonDrinkService personDrinkService;
+
+	@Autowired
+    PersonDrinkService personDrinkService;
 //
 //	@RequestMapping(method = RequestMethod.POST, produces = "text/html")
 //    public String create(@Valid Drink drink, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
@@ -138,5 +138,22 @@ public class DrinkController {
     public @ResponseBody
     List<Drink> list() {
         return Drink.findAllDrinkses();
+    }
+
+    @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"}, produces = "application/json")
+    public void addPersonDrinks(@PathVariable("id") Long id, @RequestBody Long[] drinkIds) {
+        final Person person = Person.findPersons(id);
+        for (Long drinkId : drinkIds) {
+            Drink drink = Drink.findDrinks(drinkId);
+            PersonDrink personDrink = new PersonDrink();
+            personDrink.setCreatedBy(id);
+            personDrink.setPersonId(person);
+            personDrink.setIsConsumed(true);
+            personDrink.setCreatedDatetime(Calendar.getInstance());
+            personDrink.setDrinkId(drink);
+            personDrink.setDatetimeOfConsumtion(Calendar.getInstance());
+            personDrink.setQuantity(BigDecimal.ONE);
+            personDrinkService.savePersonDrinks(personDrink);
+        }
     }
 }

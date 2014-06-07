@@ -1,22 +1,19 @@
 package com.livebetter.controllers;
-import com.livebetter.domain.Drink;
+
 import com.livebetter.domain.Meal;
+import com.livebetter.domain.Person;
+import com.livebetter.domain.PersonDrink;
+import com.livebetter.domain.PersonMeal;
 import com.livebetter.services.MealService;
 import com.livebetter.services.PersonMealService;
-import java.io.UnsupportedEncodingException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import org.joda.time.format.DateTimeFormat;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriUtils;
-import org.springframework.web.util.WebUtils;
 
 @Controller
 @RequestMapping("/meals")
@@ -24,9 +21,9 @@ public class MealController {
 
 	@Autowired
     MealService mealService;
-//
-//	@Autowired
-//    PersonMealService personMealService;
+
+	@Autowired
+    PersonMealService personMealService;
 //
 //	@RequestMapping(method = RequestMethod.POST, produces = "text/html")
 //    public String create(@Valid Meal meal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
@@ -137,5 +134,22 @@ public class MealController {
     public @ResponseBody
     List<Meal> list() {
         return Meal.findAllMealses();
+    }
+
+    @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"}, produces = "application/json")
+    public void addPersonMeals(@PathVariable("id") Long id, @RequestBody Long[] mealIds) {
+        final Person person = Person.findPersons(id);
+        for (Long mealId : mealIds) {
+            Meal meal = Meal.findMeals(mealId);
+            PersonMeal personMeal = new PersonMeal();
+            personMeal.setCreatedBy(id);
+            personMeal.setQuantity(BigDecimal.ONE);
+            personMeal.setDatetimeOfConsumtion(Calendar.getInstance());
+            personMeal.setCreatedDatetime(Calendar.getInstance());
+            personMeal.setIsConsumed(true);
+            personMeal.setMealId(meal);
+            personMeal.setPersonId(person);
+            personMealService.savePersonMeals(personMeal);
+        }
     }
 }

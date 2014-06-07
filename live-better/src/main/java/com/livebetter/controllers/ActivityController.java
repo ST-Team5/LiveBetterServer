@@ -1,13 +1,14 @@
 package com.livebetter.controllers;
 import antlr.collections.List;
 
-import com.livebetter.domain.Activity;
-import com.livebetter.domain.Drink;
+import com.livebetter.domain.*;
 import com.livebetter.services.ActivityService;
 import com.livebetter.services.ActivityServiceImpl;
 import com.livebetter.services.PersonActivityService;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -142,5 +143,22 @@ public class ActivityController {
     public @ResponseBody
     java.util.List<Activity> list() {
         return Activity.findAllActivitieses();
+    }
+
+    @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"}, produces = "application/json")
+    public void addPersonActivities(@PathVariable("id") Long id, @RequestBody Long[] activityIds) {
+        final Person person = Person.findPersons(id);
+        for (Long activityId : activityIds) {
+            Activity activity = Activity.findActivities(activityId);
+            PersonActivity personActivity = new PersonActivity();
+            personActivity.setPersonId(person);
+            personActivity.setIsConsumed(true);
+            personActivity.setCreatedBy(id);
+            personActivity.setCreatedDatetime(Calendar.getInstance());
+            personActivity.setDatetimeOfConsumtion(Calendar.getInstance());
+            personActivity.setActivityId(activity);
+            personActivity.setQuantity(BigDecimal.ONE);
+            personActivityService.savePersonActivities(personActivity);
+        }
     }
 }
