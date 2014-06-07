@@ -14,7 +14,9 @@
 			authentication-failure-handler-ref="authFailureHandler"
 			authentication-success-handler-ref="authSuccessHandler"/> 
 		<logout logout-success-url="/login.jsp" logout-url="/logout.do" />
-		<intercept-url pattern="/**" access="isAuthenticated()" />
+		<!-- Georgi, 2014-06-07 21:24 - temporarily disabling authentication until the client is ready. -->
+		<!--<intercept-url pattern="/**" access="isAuthenticated()" />-->
+		<intercept-url pattern="/**" access="permitAll" />
 	</http>
 
 	<authentication-manager>
