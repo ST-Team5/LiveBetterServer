@@ -2,6 +2,7 @@ package com.livebetter.controllers;
 import antlr.collections.List;
 
 import com.livebetter.domain.Activity;
+import com.livebetter.domain.Drink;
 import com.livebetter.services.ActivityService;
 import com.livebetter.services.ActivityServiceImpl;
 import com.livebetter.services.PersonActivityService;
@@ -135,5 +136,11 @@ public class ActivityController {
 		act.setCaloriesPerHour(activityAsJson.getCaloriesPerHour());
 
 		activityService.saveActivities(act); 
+    }
+
+    @RequestMapping(value = "activities/list", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    java.util.List<Activity> list() {
+        return Activity.findAllActivitieses();
     }
 }

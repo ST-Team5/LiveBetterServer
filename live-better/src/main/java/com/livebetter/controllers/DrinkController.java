@@ -1,10 +1,12 @@
 package com.livebetter.controllers;
 import com.livebetter.domain.Activity;
 import com.livebetter.domain.Drink;
+import com.livebetter.domain.Meal;
 import com.livebetter.services.DrinkService;
 import com.livebetter.services.PersonDrinkService;
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
@@ -18,13 +20,14 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
 @Controller
+@RequestMapping("/drinks")
 public class DrinkController {
 
 	@Autowired
     DrinkService drinkService;
-
-	@Autowired
-    PersonDrinkService personDrinkService;
+//
+//	@Autowired
+//    PersonDrinkService personDrinkService;
 //
 //	@RequestMapping(method = RequestMethod.POST, produces = "text/html")
 //    public String create(@Valid Drink drink, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
@@ -115,7 +118,7 @@ public class DrinkController {
 //        return pathSegment;
 //    }
 
-    @RequestMapping(value = "drinks/insert", method = RequestMethod.POST, headers = {"Content-type=application/json"})
+    @RequestMapping(value = "insert", method = RequestMethod.POST, headers = {"Content-type=application/json"})
     public @ResponseBody
     void insertDrink(@RequestBody Drink drinkAsJson) {
         Drink drink = new Drink();
@@ -129,5 +132,11 @@ public class DrinkController {
         drink.setModifiedDatetime(Calendar.getInstance());
         drink.setType(drinkAsJson.getType());
         drinkService.saveDrinks(drink);
+    }
+
+    @RequestMapping(value = "list", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<Drink> list() {
+        return Drink.findAllDrinkses();
     }
 }

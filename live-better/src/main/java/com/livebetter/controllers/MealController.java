@@ -5,6 +5,7 @@ import com.livebetter.services.MealService;
 import com.livebetter.services.PersonMealService;
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
@@ -18,14 +19,15 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
 @Controller
+@RequestMapping("/meals")
 public class MealController {
 
 	@Autowired
     MealService mealService;
-
-	@Autowired
-    PersonMealService personMealService;
-
+//
+//	@Autowired
+//    PersonMealService personMealService;
+//
 //	@RequestMapping(method = RequestMethod.POST, produces = "text/html")
 //    public String create(@Valid Meal meal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
 //        if (bindingResult.hasErrors()) {
@@ -115,7 +117,7 @@ public class MealController {
 //        return pathSegment;
 //    }
 
-    @RequestMapping(value = "meals/insert", method = RequestMethod.POST, headers = {"Content-type=application/json"})
+    @RequestMapping(value = "insert", method = RequestMethod.POST, headers = {"Content-type=application/json"})
     public @ResponseBody
     void insertMeal(@RequestBody Meal mealAsJson) {
         Meal meal = new Meal();
@@ -129,5 +131,11 @@ public class MealController {
         meal.setModifiedDatetime(Calendar.getInstance());
         meal.setType(mealAsJson.getType());
         mealService.saveMeals(meal);
+    }
+
+    @RequestMapping(value = "list", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<Meal> list() {
+        return Meal.findAllMealses();
     }
 }
