@@ -30,6 +30,7 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
 @Controller
+@RequestMapping("/activities")
 public class ActivityController {
 
 	@Autowired
@@ -128,7 +129,7 @@ public class ActivityController {
     }
 	*/
 	
-	@RequestMapping(value = "activities/insert-new-type", method = RequestMethod.POST, headers = {"Content-type=application/json"})
+	@RequestMapping(value = "insert-new-type", method = RequestMethod.POST, headers = {"Content-type=application/json"})
     public @ResponseBody void InsertActivity(@RequestBody Activity activityAsJson) {
 
 		Activity act = new Activity();
@@ -139,7 +140,7 @@ public class ActivityController {
 		activityService.saveActivities(act); 
     }
 
-    @RequestMapping(value = "activities/list", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "list", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     java.util.List<Activity> list() {
         return Activity.findAllActivitieses();
