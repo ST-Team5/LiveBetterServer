@@ -23,7 +23,5 @@ public interface SystemUserService {
 
 
 	public abstract SystemUser updateSystemUsers(SystemUser systemUser);
-	
-	public SystemUser findSystemUserByUserName(String name);
 
 }
