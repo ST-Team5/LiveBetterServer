@@ -21,7 +21,9 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 	@Autowired
 	private SystemUserService systemUserService;
 	
-	private final String defaultRedirectUrl = "/LiveBetterClient/#/";
+//	private final String defaultRedirectUrl = "/LiveBetterClient/#/";
+	private final String defaultRedirectUrl = "https://st-team5.github.io/LiveBetterClient/#/";
+//	private final String defaultRedirectUrl = "http://127.0.0.1:9000/#/";
 	
 	
 	@Override
