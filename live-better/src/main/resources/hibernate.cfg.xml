@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+      <mapping class="com.livebetter.domain.Activity"/>
+      <mapping class="com.livebetter.domain.Drink"/>
+      <mapping class="com.livebetter.domain.Meal"/>
+      <mapping class="com.livebetter.domain.Metabolism"/>
+      <mapping class="com.livebetter.domain.Person"/>
+      <mapping class="com.livebetter.domain.PersonActivity"/>
+      <mapping class="com.livebetter.domain.PersonDrink"/>
+      <mapping class="com.livebetter.domain.PersonMeal"/>
+      <mapping class="com.livebetter.domain.SystemUser"/>
+      <mapping class="com.livebetter.domain.SystemUserRole"/>
+      <mapping class="com.livebetter.domain.UserToPerson"/>
+    <property name="connection.url">jdbc:postgresql://62.44.100.18/livebetter</property>
+    <property name="connection.driver_class">org.postgresql.Driver</property>
+    <property name="connection.username">team5</property>
+    <property name="connection.password">tfag350</property>
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>
