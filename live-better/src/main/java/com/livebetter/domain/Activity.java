@@ -46,6 +46,16 @@ public class Activity {
         return entityManager().createQuery("SELECT o FROM Activity o", Activity.class).getResultList();
     }
 
+	public static List<Activity> findFrequentActivitiesForUser(Long userId) {
+		String query = String.format("select a from Activity a join a.personActivitieses as pa where pa.personId = %d group by a.id order by count(pa)", userId);
+		return entityManager().createQuery(query, Activity.class).getResultList();
+	}
+
+	public static List<Activity> findRecentActivitiesForUser(Long userId) {
+		String query = String.format("select a from Activity a join a.personActivitieses as pa where pa.personId = %d group by a.id order by max(pa.datetimeOfConsumtion)", userId);
+		return entityManager().createQuery(query, Activity.class).getResultList();
+	}
+
 	public static List<Activity> findAllActivitieses(String sortFieldName, String sortOrder) {
         String jpaQuery = "SELECT o FROM Activity o";
         if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
