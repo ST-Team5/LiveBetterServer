@@ -20,6 +20,11 @@ public class UserContextImpl implements UserContext{
 			if(principal instanceof UserDetails){
 				currentUser =  systemUserService.findSystemUserByUserName(((UserDetails)principal).getUsername());
 			}
+			
+			//Hardcoded user
+			if(currentUser == null){
+				currentUser = systemUserService.findSystemUsers(1l);
+			}
 
 		return currentUser;
 	}
