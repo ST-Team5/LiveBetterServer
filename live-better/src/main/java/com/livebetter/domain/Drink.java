@@ -64,6 +64,16 @@ public class Drink {
         return entityManager().createQuery("SELECT o FROM Drink o", Drink.class).getResultList();
     }
 
+	public static List<Drink> findFrequentDrinksForUser(Long userId) {
+		String query = String.format("select d from Drink d join d.personDrinkss as pd where pd.personId = %d group by d.id order by count(pd)", userId);
+		return entityManager().createQuery(query, Drink.class).getResultList();
+	}
+
+	public static List<Drink> findRecentDrinksForUser(Long userId) {
+		String query = String.format("select d from Drink d join d.personDrinkss as pd where pd.personId = %d group by d.id order by max(pd.datetimeOfConsumtion)", userId);
+		return entityManager().createQuery(query, Drink.class).getResultList();
+	}
+
 	public static List<Drink> findAllDrinkses(String sortFieldName, String sortOrder) {
         String jpaQuery = "SELECT o FROM Drink o";
         if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {

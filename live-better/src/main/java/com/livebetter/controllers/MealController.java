@@ -1,9 +1,6 @@
 package com.livebetter.controllers;
 
-import com.livebetter.domain.Meal;
-import com.livebetter.domain.Person;
-import com.livebetter.domain.PersonDrink;
-import com.livebetter.domain.PersonMeal;
+import com.livebetter.domain.*;
 import com.livebetter.services.MealService;
 import com.livebetter.services.PersonMealService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,6 +136,26 @@ public class MealController {
         }
         return mealList;
     }
+
+	@RequestMapping(value = "list/frequent/{id}", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody
+	java.util.List<Meal> listFrequent(@PathVariable("id") Long id) {
+		final List<Meal> mealList = Meal.findFrequentMealsForUser(id);
+		for (Meal meal : mealList) {
+			meal.setPersonMealss(null);
+		}
+		return mealList;
+	}
+
+	@RequestMapping(value = "list/recent/{id}", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody
+	java.util.List<Meal> listRecent(@PathVariable("id") Long id) {
+		final List<Meal> mealList = Meal.findRecentMealssForUser(id);
+		for (Meal meal : mealList) {
+			meal.setPersonMealss(null);
+		}
+		return mealList;
+	}
 
     @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"}, produces = "application/json")
     public void addPersonMeals(@PathVariable("id") Long id, @RequestBody Long[] mealIds) {

@@ -144,6 +144,26 @@ public class DrinkController {
         return drinkList;
     }
 
+	@RequestMapping(value = "list/frequent/{id}", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody
+	java.util.List<Drink> listFrequent(@PathVariable("id") Long id) {
+		final List<Drink> drinkList = Drink.findAllDrinkses();
+		for (Drink drink : drinkList) {
+			drink.setPersonDrinkss(null);
+		}
+		return drinkList;
+	}
+
+	@RequestMapping(value = "list/recent/{id}", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody
+	java.util.List<Drink> listRecent(@PathVariable("id") Long id) {
+		final List<Drink> drinkList = Drink.findAllDrinkses();
+		for (Drink drink : drinkList) {
+			drink.setPersonDrinkss(null);
+		}
+		return drinkList;
+	}
+
     @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"}, produces = "application/json")
     public void addPersonDrinks(@PathVariable("id") Long id, @RequestBody Long[] drinkIds) {
         final Person person = Person.findPersons(id);

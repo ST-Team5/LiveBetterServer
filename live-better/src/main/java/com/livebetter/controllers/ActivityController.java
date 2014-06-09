@@ -163,13 +163,14 @@ public class ActivityController {
 
 	@RequestMapping(value = "list/recent/{id}", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody
-	java.util.List<Activity> lisRecent(@PathVariable("id") Long id) {
+	java.util.List<Activity> listRecent(@PathVariable("id") Long id) {
 		java.util.List<Activity> activityList = Activity.findRecentActivitiesForUser(id);
 		for (Activity activity : activityList) {
 			activity.setPersonActivitieses(null);
 		}
 		return activityList;
 	}
+
     @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"}, produces = "application/json")
     public void addPersonActivities(@PathVariable("id") Long id, @RequestBody Long[] activityIds) {
         final Person person = Person.findPersons(id);
