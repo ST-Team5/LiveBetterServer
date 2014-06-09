@@ -147,7 +147,7 @@ public class DrinkController {
 	@RequestMapping(value = "list/frequent/{id}", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody
 	java.util.List<Drink> listFrequent(@PathVariable("id") Long id) {
-		final List<Drink> drinkList = Drink.findAllDrinkses();
+		final List<Drink> drinkList = Drink.findFrequentDrinksForUser(id);
 		for (Drink drink : drinkList) {
 			drink.setPersonDrinkss(null);
 		}
@@ -157,7 +157,7 @@ public class DrinkController {
 	@RequestMapping(value = "list/recent/{id}", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody
 	java.util.List<Drink> listRecent(@PathVariable("id") Long id) {
-		final List<Drink> drinkList = Drink.findAllDrinkses();
+		final List<Drink> drinkList = Drink.findRecentDrinksForUser(id);
 		for (Drink drink : drinkList) {
 			drink.setPersonDrinkss(null);
 		}
