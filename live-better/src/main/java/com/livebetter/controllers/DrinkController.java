@@ -164,7 +164,7 @@ public class DrinkController {
 		return drinkList;
 	}
 
-    @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"}, produces = "application/json")
+    @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"})
     public void addPersonDrinks(@PathVariable("id") Long id, @RequestBody Long[] drinkIds) {
         final Person person = Person.findPersons(id);
         for (Long drinkId : drinkIds) {

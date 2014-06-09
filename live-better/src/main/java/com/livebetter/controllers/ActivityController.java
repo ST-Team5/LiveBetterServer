@@ -171,7 +171,7 @@ public class ActivityController {
 		return activityList;
 	}
 
-    @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"}, produces = "application/json")
+    @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"})
     public void addPersonActivities(@PathVariable("id") Long id, @RequestBody Long[] activityIds) {
         final Person person = Person.findPersons(id);
         for (Long activityId : activityIds) {
