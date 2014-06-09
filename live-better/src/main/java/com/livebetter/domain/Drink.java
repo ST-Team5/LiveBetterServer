@@ -65,7 +65,7 @@ public class Drink {
     }
 
 	public static List<Drink> findFrequentDrinksForUser(Long userId) {
-		String query = String.format("select d from Drink d join d.personDrinkss as pd where pd.personId = %d group by d.id order by count(pd)", userId);
+		String query = String.format("select d from Drink d join d.personDrinkss as pd where pd.personId = %d group by d.id order by count(pd) desc nulls last", userId);
 		return entityManager().createQuery(query, Drink.class).getResultList();
 	}
 

@@ -65,7 +65,7 @@ public class Meal {
     }
 
 	public static List<Meal> findFrequentMealsForUser(Long userId) {
-		String query = String.format("select m from Meal m join m.personMealss as pm where pm.personId = %d group by m.id order by count(pm)", userId);
+		String query = String.format("select m from Meal m join m.personMealss as pm where pm.personId = %d group by m.id order by count(pm) desc nulls last", userId);
 		return entityManager().createQuery(query, Meal.class).getResultList();
 	}
 
