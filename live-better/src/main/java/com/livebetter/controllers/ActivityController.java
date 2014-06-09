@@ -1,34 +1,17 @@
 package com.livebetter.controllers;
-import antlr.collections.List;
 
-import com.livebetter.domain.*;
+import com.livebetter.domain.Activity;
+import com.livebetter.domain.Person;
+import com.livebetter.domain.PersonActivity;
 import com.livebetter.services.ActivityService;
 import com.livebetter.services.ActivityServiceImpl;
 import com.livebetter.services.PersonActivityService;
-
-import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
-import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.util.UriUtils;
-import org.springframework.web.util.WebUtils;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.util.Calendar;
 
 @Controller
 @RequestMapping("/activities")
@@ -163,7 +146,7 @@ public class ActivityController {
 
 	@RequestMapping(value = "list/recent/{id}", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody
-	java.util.List<Activity> listRecent(@PathVariable("id") Long id) {
+    java.util.List<Activity> listRecent(@PathVariable("id") Long id) {
 		java.util.List<Activity> activityList = Activity.findRecentActivitiesForUser(id);
 		for (Activity activity : activityList) {
 			activity.setPersonActivitieses(null);
@@ -172,7 +155,7 @@ public class ActivityController {
 	}
 
     @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"})
-    public void addPersonActivities(@PathVariable("id") Long id, @RequestBody Long[] activityIds) {
+    public @ResponseBody void addPersonActivities(@PathVariable("id") Long id, @RequestBody Long[] activityIds) {
         final Person person = Person.findPersons(id);
         for (Long activityId : activityIds) {
             Activity activity = Activity.findActivities(activityId);
