@@ -1,5 +1,6 @@
 package com.livebetter.controllers;
 import com.livebetter.domain.Activity;
+import com.livebetter.domain.Metabolism;
 import com.livebetter.domain.Person;
 import com.livebetter.services.MetabolismService;
 import com.livebetter.services.PersonActivityService;
@@ -150,15 +151,17 @@ public class PersonController {
     public @ResponseBody void SetUserDetails(@RequestBody Person personAsJson) {
 
 		Person person = new Person();
-
+		Metabolism personMetabolism = new Metabolism();
+		personMetabolism.setId((long) 1);
 		person.setFirstname(personAsJson.getFirstname());
 		person.setMiddlename(personAsJson.getMiddlename());
 		person.setLastname(personAsJson.getLastname());
-		person.setDateOfBirth(Calendar.getInstance());
+		person.setDateOfBirth(personAsJson.getDateOfBirth());
 		person.setHeight(personAsJson.getHeight());
 		person.setWeight(personAsJson.getWeight());
 		person.setCreatedDatetime(Calendar.getInstance());
 		person.setModifiedDatetime(Calendar.getInstance());
+		person.setMetabolismId(personMetabolism);
 		
 		personService.savePersons(person);
     }
