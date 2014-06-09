@@ -70,7 +70,7 @@ public class Drink {
 	}
 
 	public static List<Drink> findRecentDrinksForUser(Long userId) {
-		String query = String.format("select d from Drink d join d.personDrinkss as pd where pd.personId = %d group by d.id order by max(pd.datetimeOfConsumtion)", userId);
+		String query = String.format("select d from Drink d join d.personDrinkss as pd where pd.personId = %d group by d.id order by max(pd.datetimeOfConsumtion) desc nulls last", userId);
 		return entityManager().createQuery(query, Drink.class).getResultList();
 	}
 

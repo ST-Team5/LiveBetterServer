@@ -52,7 +52,7 @@ public class Activity {
 	}
 
 	public static List<Activity> findRecentActivitiesForUser(Long userId) {
-		String query = String.format("select a from Activity a join a.personActivitieses as pa where pa.personId = %d group by a.id order by max(pa.datetimeOfConsumtion)", userId);
+		String query = String.format("select a from Activity a join a.personActivitieses as pa where pa.personId = %d group by a.id order by max(pa.datetimeOfConsumtion) desc nulls last", userId);
 		return entityManager().createQuery(query, Activity.class).getResultList();
 	}
 
