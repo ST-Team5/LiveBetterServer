@@ -175,7 +175,11 @@ public class Person {
 
     @Column(name= "metabolism_type")
     @Enumerated(EnumType.STRING)
-    private PersonMetabolism metabolismType;
+    private PersonMetabolism metabolismType
+            ;
+    @Column(name= "gender")
+    @Enumerated(EnumType.STRING)
+    private PersonGender gender;
 
 	@Column(name = "firstname", length = 45)
     @NotNull
@@ -357,5 +361,13 @@ public class Person {
 
     public void setGoalDeadline(Calendar goalDeadline) {
         this.goalDeadline = goalDeadline;
+    }
+
+    public PersonGender getGender() {
+        return gender;
+    }
+
+    public void setGender(PersonGender gender) {
+        this.gender = gender;
     }
 }

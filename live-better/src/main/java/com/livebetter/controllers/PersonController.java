@@ -169,6 +169,7 @@ public class PersonController {
         Calendar c = Calendar.getInstance();
         c.set(2015, 1, 1);
         person.setGoalDeadline(c);
+        person.setGender(PersonGender.MALE);
 
 		personService.savePersons(person);
     }
