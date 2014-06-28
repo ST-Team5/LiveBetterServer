@@ -52,38 +52,29 @@ public class MainScreenController {
         }
 
         final PersonGender gender = person.getGender();
-        final BigDecimal recommendedDailyCalories =
-                recommendedDailyCalories(personWeight, personHeight, personAge, gender);
         if (goalWeight != null && deadLine != null && deadLine.after(today)) {
             int numberOfDaysUntilDeadline =
                     Days.daysBetween(new DateTime(today), new DateTime(deadLine)).getDays();
             final long desiredWeightDifference = goalWeight.intValue() - personWeight;
             if (PersonGender.FEMALE.equals(gender)) {
-                result = recommendedDailyCalories.add(BigDecimal.valueOf((desiredWeightDifference +
-                        (3500 - personHeight - 15 * metabolismFactor)) / numberOfDaysUntilDeadline));
+                result = BigDecimal.valueOf((desiredWeightDifference *
+                        (3500 - personHeight - 15 * metabolismFactor)) / numberOfDaysUntilDeadline);
             } else {
-                result = recommendedDailyCalories.add(BigDecimal.valueOf((desiredWeightDifference +
-                        (3000 - personHeight - 10 * metabolismFactor)) / numberOfDaysUntilDeadline));
+                result = BigDecimal.valueOf((desiredWeightDifference *
+                        (3000 - personHeight - 10 * metabolismFactor)) / numberOfDaysUntilDeadline);
             }
         } else {
             // just return the recommended values
-            result = recommendedDailyCalories;
+            if (PersonGender.FEMALE.equals(gender)) {
+                result = BigDecimal
+                        .valueOf(655 + (9.6 * personWeight) + (1.8 * personHeight) - (4.7 * personAge));
+            } else {
+                result = BigDecimal
+                        .valueOf(66 + (13.7 * personWeight) + (5 * personHeight) - (6.8 * personAge));
+            }
         }
 
-        return result.setScale(2, RoundingMode.HALF_UP);
-    }
-
-    private BigDecimal recommendedDailyCalories(Long personWeight, Long personHeight, Integer personAge,
-                                                PersonGender gender) {
-        BigDecimal result;
-        if (PersonGender.FEMALE.equals(gender)) {
-            result = BigDecimal
-                    .valueOf(655 + (9.6 * personWeight) + (1.8 * personHeight) - (4.7 * personAge));
-        } else {
-            result = BigDecimal
-                    .valueOf(66 + (13.7 * personWeight) + (5 * personHeight) - (6.8 * personAge));
-        }
-        return result;
+        return result.setScale(0, RoundingMode.HALF_UP);
     }
 
     @RequestMapping(value = "{uid}", method = RequestMethod.GET, produces = "application/json")
@@ -92,17 +83,17 @@ public class MainScreenController {
     Map<String, Object> mainScreenForToday(@PathVariable("uid") Long id) {
         Person person = Person.findPersons(id);
 
-        final BigDecimal recommendedCalories = calculatePersonCaloriesPerDay(person);
+        final BigDecimal desiredDifference = calculatePersonCaloriesPerDay(person);
         final BigDecimal caloriesIn = Person.getPersonCaloricIntakeForLast24Hours(id);
         final BigDecimal caloriesOut = Person.getPersonBurnedCaloriesForLast24Hours(id);
-        final BigDecimal caloriesRemaining = recommendedCalories.subtract(caloriesOut).add(caloriesIn);
+        final BigDecimal caloriesRemaining = caloriesIn.subtract(caloriesOut).add(desiredDifference);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("caloriesConsumed", caloriesIn);
         result.put("caloriesBurned", caloriesOut);
         result.put("caloriesRemaining", caloriesRemaining);
         result.put("minutesExercised",
                 Person.getPersonHoursOfTrainingForLast24Hours(id).multiply(BigDecimal.valueOf(60)));
-        result.put("recommendedPerDay", recommendedCalories);
+        result.put("differencePerDay", desiredDifference);
         return result;
     }
 
@@ -113,17 +104,17 @@ public class MainScreenController {
                                                  @PathVariable("m") Long month, @PathVariable("d") Long day) {
         Person person = Person.findPersons(id);
 
-        final BigDecimal recommendedCalories = calculatePersonCaloriesPerDay(person);
+        final BigDecimal desiredDifference = calculatePersonCaloriesPerDay(person);
         final BigDecimal caloriesIn = Person.getPersonCaloricIntakeForLast24Hours(id);
         final BigDecimal caloriesOut = Person.getPersonBurnedCaloriesForLast24Hours(id);
-        final BigDecimal caloriesRemaining = recommendedCalories.subtract(caloriesOut).add(caloriesIn);
+        final BigDecimal caloriesRemaining = caloriesIn.subtract(caloriesOut).add(desiredDifference);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("caloriesConsumed", caloriesIn);
         result.put("caloriesBurned", caloriesOut);
         result.put("caloriesRemaining", caloriesRemaining);
         result.put("minutesExercised",
                 Person.getPersonHoursOfTrainingForLast24Hours(id).multiply(BigDecimal.valueOf(60)));
-        result.put("recommendedPerDay", recommendedCalories);
+        result.put("differencePerDay", desiredDifference);
         return result;
     }
 }
