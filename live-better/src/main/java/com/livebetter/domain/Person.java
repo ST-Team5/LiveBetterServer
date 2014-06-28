@@ -82,6 +82,39 @@ public class Person {
         return entityManager().createQuery(jpaQuery, Person.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
 
+    public static BigDecimal getPersonCaloricIntakeForLast24Hours(Long personId) {
+        String jpaQuery = String.format(
+                "SELECT sum(personMeal.mealId.calories) from PersonMeal personMeal where personId.id = %d and (datetimeOfConsumtion >= (current_date() - 1))",
+                personId);
+        List results = entityManager().createQuery(jpaQuery).getResultList();
+        if (results == null || results.size() == 0) {
+            return BigDecimal.ZERO;
+        }
+        return BigDecimal.valueOf(((Number)results.get(0)).doubleValue());
+    }
+
+    public static BigDecimal getPersonBurnedCaloriesForLast24Hours(Long personId) {
+        String jpaQuery = String.format(
+                "SELECT sum(personActivity.activityId.caloriesPerHour * personActivity.quantity) from PersonActivity personActivity where personId.id = %d and (datetimeOfConsumtion >= (current_date () - 1))",
+                personId);
+        List results = entityManager().createQuery(jpaQuery).getResultList();
+        if (results == null || results.size() == 0) {
+            return BigDecimal.ZERO;
+        }
+        return BigDecimal.valueOf(((Number)results.get(0)).doubleValue());
+    }
+
+    public static BigDecimal getPersonHoursOfTrainingForLast24Hours(Long personId) {
+        String jpaQuery = String.format(
+                "SELECT sum(personActivity.quantity) from PersonActivity personActivity where personId.id = %d and (datetimeOfConsumtion >= (current_date () - 1))",
+                personId);
+        List results = entityManager().createQuery(jpaQuery).getResultList();
+        if (results == null || results.size() == 0) {
+            return BigDecimal.ZERO;
+        }
+        return BigDecimal.valueOf(((Number)results.get(0)).doubleValue());
+    }
+
 	@Transactional
     public void persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
