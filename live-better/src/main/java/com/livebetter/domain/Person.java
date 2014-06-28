@@ -82,37 +82,46 @@ public class Person {
         return entityManager().createQuery(jpaQuery, Person.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
 
-    public static BigDecimal getPersonCaloricIntakeForLast24Hours(Long personId) {
-        String jpaQuery = String.format(
-                "SELECT sum(personMeal.mealId.calories) from PersonMeal personMeal where personId.id = %d and (datetimeOfConsumtion >= (current_date() - 1))",
-                personId);
-        List results = entityManager().createQuery(jpaQuery).getResultList();
-        if (results == null || results.size() == 0) {
+    private static BigDecimal executeMainScreenAggregationQuery(String queryString, Calendar date) {
+        Calendar startDate = (Calendar) date.clone();
+        startDate.set(Calendar.HOUR, 0);
+        startDate.set(Calendar.MINUTE, 0);
+        startDate.set(Calendar.SECOND, 0);
+        Calendar endDate = (Calendar) startDate.clone();
+        endDate.add(Calendar.DATE, 1);
+
+        final Query query = entityManager().createQuery(queryString);
+        query.setParameter("startDate", startDate, TemporalType.DATE);
+        query.setParameter("endDate", endDate, TemporalType.DATE);
+        List results = query.getResultList();
+        if (results == null || results.size() == 0 || results.get(0) == null) {
             return BigDecimal.ZERO;
         }
-        return BigDecimal.valueOf(((Number)results.get(0)).doubleValue());
+        return BigDecimal.valueOf(((Number) results.get(0)).doubleValue());
     }
 
-    public static BigDecimal getPersonBurnedCaloriesForLast24Hours(Long personId) {
-        String jpaQuery = String.format(
-                "SELECT sum(personActivity.activityId.caloriesPerHour * personActivity.quantity) from PersonActivity personActivity where personId.id = %d and (datetimeOfConsumtion >= (current_date () - 1))",
-                personId);
-        List results = entityManager().createQuery(jpaQuery).getResultList();
-        if (results == null || results.size() == 0) {
-            return BigDecimal.ZERO;
-        }
-        return BigDecimal.valueOf(((Number)results.get(0)).doubleValue());
+    public static BigDecimal getPersonCaloricIntakeForSpecificDate(Long personId, Calendar date) {
+        return executeMainScreenAggregationQuery(
+                String.format(
+                        "SELECT sum(personMeal.mealId.calories) from PersonMeal personMeal where personId.id = %d and datetimeOfConsumtion >= :startDate and datetimeOfConsumtion < :endDate",
+                        personId),
+                date);
     }
 
-    public static BigDecimal getPersonHoursOfTrainingForLast24Hours(Long personId) {
-        String jpaQuery = String.format(
-                "SELECT sum(personActivity.quantity) from PersonActivity personActivity where personId.id = %d and (datetimeOfConsumtion >= (current_date () - 1))",
-                personId);
-        List results = entityManager().createQuery(jpaQuery).getResultList();
-        if (results == null || results.size() == 0) {
-            return BigDecimal.ZERO;
-        }
-        return BigDecimal.valueOf(((Number)results.get(0)).doubleValue());
+    public static BigDecimal getPersonBurnedCaloriesForSpecificDate(Long personId, Calendar date) {
+        return executeMainScreenAggregationQuery(
+                String.format(
+                        "SELECT sum(personActivity.activityId.caloriesPerHour * personActivity.quantity) from PersonActivity personActivity where personId.id = %d and datetimeOfConsumtion >= :startDate and datetimeOfConsumtion < :endDate",
+                        personId),
+                date);
+    }
+
+    public static BigDecimal getPersonHoursOfTrainingForSpecificDate(Long personId, Calendar date) {
+        return executeMainScreenAggregationQuery(
+                String.format(
+                        "SELECT sum(personActivity.quantity) from PersonActivity personActivity where personId.id = %d and datetimeOfConsumtion >= :startDate and datetimeOfConsumtion < :endDate",
+                        personId),
+                date);
     }
 
 	@Transactional

@@ -27,15 +27,14 @@ public class MainScreenController {
     @Autowired
     PersonService personService = new PersonServiceImpl();
 
-    private BigDecimal calculatePersonCaloriesPerDay(Person person) {
-        final Calendar today = Calendar.getInstance();
+    private BigDecimal calculatePersonCaloriesPerDay(Person person, Calendar date) {
         final Calendar deadLine = person.getGoalDeadline();
         final BigDecimal goalWeight = person.getGoalWeight();
         final BigDecimal result;
         final Long personWeight = person.getWeight();
         final Long personHeight = person.getHeight();
         final Integer personAge = Years.yearsBetween(new DateTime(person.getDateOfBirth()),
-                new DateTime(today)).get(DurationFieldType.years());
+                new DateTime(date)).get(DurationFieldType.years());
 
         final double metabolismFactor;
         switch (person.getMetabolismType()) {
@@ -52,9 +51,9 @@ public class MainScreenController {
         }
 
         final PersonGender gender = person.getGender();
-        if (goalWeight != null && deadLine != null && deadLine.after(today)) {
+        if (goalWeight != null && deadLine != null && deadLine.after(date)) {
             int numberOfDaysUntilDeadline =
-                    Days.daysBetween(new DateTime(today), new DateTime(deadLine)).getDays();
+                    Days.daysBetween(new DateTime(date), new DateTime(deadLine)).getDays();
             final long desiredWeightDifference = goalWeight.intValue() - personWeight;
             if (PersonGender.FEMALE.equals(gender)) {
                 result = BigDecimal.valueOf((desiredWeightDifference *
@@ -77,44 +76,37 @@ public class MainScreenController {
         return result.setScale(0, RoundingMode.HALF_UP);
     }
 
-    @RequestMapping(value = "{uid}", method = RequestMethod.GET, produces = "application/json")
-    public
-    @ResponseBody
-    Map<String, Object> mainScreenForToday(@PathVariable("uid") Long id) {
+    private Map<String, Object> getResult(Long id, Calendar date) {
         Person person = Person.findPersons(id);
 
-        final BigDecimal desiredDifference = calculatePersonCaloriesPerDay(person);
-        final BigDecimal caloriesIn = Person.getPersonCaloricIntakeForLast24Hours(id);
-        final BigDecimal caloriesOut = Person.getPersonBurnedCaloriesForLast24Hours(id);
+        final BigDecimal desiredDifference = calculatePersonCaloriesPerDay(person, Calendar.getInstance());
+        final BigDecimal caloriesIn = Person.getPersonCaloricIntakeForSpecificDate(id, date);
+        final BigDecimal caloriesOut = Person.getPersonBurnedCaloriesForSpecificDate(id, date);
         final BigDecimal caloriesRemaining = caloriesIn.subtract(caloriesOut).add(desiredDifference);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("caloriesConsumed", caloriesIn);
         result.put("caloriesBurned", caloriesOut);
         result.put("caloriesRemaining", caloriesRemaining);
         result.put("minutesExercised",
-                Person.getPersonHoursOfTrainingForLast24Hours(id).multiply(BigDecimal.valueOf(60)));
+                Person.getPersonHoursOfTrainingForSpecificDate(id, date).multiply(BigDecimal.valueOf(60)));
         result.put("differencePerDay", desiredDifference);
         return result;
+    }
+
+    @RequestMapping(value = "{uid}", method = RequestMethod.GET, produces = "application/json")
+    public
+    @ResponseBody
+    Map<String, Object> mainScreenForToday(@PathVariable("uid") Long id) {
+        return getResult(id, Calendar.getInstance());
     }
 
     @RequestMapping(value = "{uid}/{y}/{m}/{d}", method = RequestMethod.GET, produces = "application/json")
     public
     @ResponseBody
-    Map<String, Object> mainScreenWithDateFilter(@PathVariable("uid") Long id, @PathVariable("y") Long year,
-                                                 @PathVariable("m") Long month, @PathVariable("d") Long day) {
-        Person person = Person.findPersons(id);
-
-        final BigDecimal desiredDifference = calculatePersonCaloriesPerDay(person);
-        final BigDecimal caloriesIn = Person.getPersonCaloricIntakeForLast24Hours(id);
-        final BigDecimal caloriesOut = Person.getPersonBurnedCaloriesForLast24Hours(id);
-        final BigDecimal caloriesRemaining = caloriesIn.subtract(caloriesOut).add(desiredDifference);
-        Map<String, Object> result = new HashMap<String, Object>();
-        result.put("caloriesConsumed", caloriesIn);
-        result.put("caloriesBurned", caloriesOut);
-        result.put("caloriesRemaining", caloriesRemaining);
-        result.put("minutesExercised",
-                Person.getPersonHoursOfTrainingForLast24Hours(id).multiply(BigDecimal.valueOf(60)));
-        result.put("differencePerDay", desiredDifference);
-        return result;
+    Map<String, Object> mainScreenWithDateFilter(@PathVariable("uid") Long id, @PathVariable("y") Integer year,
+                                                 @PathVariable("m") Integer month, @PathVariable("d") Integer day) {
+        Calendar date = Calendar.getInstance();
+        date.set(year, month - 1, day);
+        return getResult(id, date);
     }
 }
