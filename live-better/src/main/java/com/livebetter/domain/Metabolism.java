@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Configurable
 @Entity
 @Table(schema = "public",name = "metabolisms")
+@Deprecated
 public class Metabolism {
 
 	@OneToMany(mappedBy = "metabolismId")

@@ -1,20 +1,9 @@
 package com.livebetter.domain;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -148,7 +137,12 @@ public class Person {
 
 	@ManyToOne
     @JoinColumn(name = "metabolism_id", referencedColumnName = "id")
+    @Deprecated
     private Metabolism metabolismId;
+
+    @Column(name= "metabolism_type")
+    @Enumerated(EnumType.STRING)
+    private PersonMetabolism metabolismType;
 
 	@Column(name = "firstname", length = 45)
     @NotNull
@@ -186,7 +180,17 @@ public class Person {
     @DateTimeFormat(style = "MM")
     private Calendar modifiedDatetime;
 
-	public Set<PersonActivity> getPersonActivitieses() {
+    @Column(name = "goal_weight")
+    private BigDecimal goalWeight;
+
+    @Column(name = "goal_deadline")
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(style = "MM")
+    private Calendar goalDeadline;
+
+
+    public Set<PersonActivity> getPersonActivitieses() {
         return personActivitieses;
     }
 
@@ -296,5 +300,29 @@ public class Person {
 
 	public void setModifiedDatetime(Calendar modifiedDatetime) {
         this.modifiedDatetime = modifiedDatetime;
+    }
+
+    public PersonMetabolism getMetabolismType() {
+        return metabolismType;
+    }
+
+    public void setMetabolismType(PersonMetabolism metabolismType) {
+        this.metabolismType = metabolismType;
+    }
+
+    public BigDecimal getGoalWeight() {
+        return goalWeight;
+    }
+
+    public void setGoalWeight(BigDecimal goalWeight) {
+        this.goalWeight = goalWeight;
+    }
+
+    public Calendar getGoalDeadline() {
+        return goalDeadline;
+    }
+
+    public void setGoalDeadline(Calendar goalDeadline) {
+        this.goalDeadline = goalDeadline;
     }
 }

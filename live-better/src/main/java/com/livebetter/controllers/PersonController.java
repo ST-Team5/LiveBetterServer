@@ -1,7 +1,5 @@
 package com.livebetter.controllers;
-import com.livebetter.domain.Activity;
-import com.livebetter.domain.Metabolism;
-import com.livebetter.domain.Person;
+import com.livebetter.domain.*;
 import com.livebetter.services.MetabolismService;
 import com.livebetter.services.PersonActivityService;
 import com.livebetter.services.PersonDrinkService;
@@ -11,6 +9,7 @@ import com.livebetter.services.PersonServiceImpl;
 import com.livebetter.services.UserToPersonService;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
@@ -162,7 +161,15 @@ public class PersonController {
 		person.setCreatedDatetime(Calendar.getInstance());
 		person.setModifiedDatetime(Calendar.getInstance());
 		person.setMetabolismId(personMetabolism);
-		
+
+        // TODO: Delete this shit.
+        person.setMetabolismType(PersonMetabolism.MIXED);
+        person.setGoalWeight(BigDecimal.valueOf(120));
+
+        Calendar c = Calendar.getInstance();
+        c.set(2015, 1, 1);
+        person.setGoalDeadline(c);
+
 		personService.savePersons(person);
     }
 }
