@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/meals")
@@ -158,13 +160,17 @@ public class MealController {
 	}
 
     @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"})
-    public @ResponseBody void addPersonMeals(@PathVariable("id") Long id, @RequestBody Long[] mealIds) {
+    public @ResponseBody void addPersonMeals(@PathVariable("id") Long id, @RequestBody List<Map<String, Object>> data) {
         final Person person = Person.findPersons(id);
-        for (Long mealId : mealIds) {
+        for (Map<String, Object> mealData : data) {
+            Long mealId = Long.valueOf(((Number) mealData.get("id")).longValue());
+            BigDecimal quantity =
+                    BigDecimal.valueOf(((Number) mealData.get("quantity")).doubleValue())
+                            .setScale(2, RoundingMode.HALF_UP);
             Meal meal = Meal.findMeals(mealId);
             PersonMeal personMeal = new PersonMeal();
             personMeal.setCreatedBy(id);
-            personMeal.setQuantity(BigDecimal.ONE);
+            personMeal.setQuantity(quantity);
             personMeal.setDatetimeOfConsumtion(Calendar.getInstance());
             personMeal.setCreatedDatetime(Calendar.getInstance());
             personMeal.setIsConsumed(true);

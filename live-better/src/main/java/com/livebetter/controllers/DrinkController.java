@@ -4,9 +4,11 @@ import com.livebetter.services.DrinkService;
 import com.livebetter.services.PersonDrinkService;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
@@ -165,10 +167,14 @@ public class DrinkController {
 	}
 
     @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"})
-    public @ResponseBody void addPersonDrinks(@PathVariable("id") Long id, @RequestBody Long[] drinkIds) {
+    public @ResponseBody void addPersonDrinks(@PathVariable("id") Long id, @RequestBody List<Map<String, Object>> data) {
         final Person person = Person.findPersons(id);
-        for (Long drinkId : drinkIds) {
-            Drink drink = Drink.findDrinks(drinkId);
+        for (Map<String, Object> drinkData : data) {
+            Long drinkId = Long.valueOf(((Number) drinkData.get("id")).longValue());
+            BigDecimal quantity =
+                    BigDecimal.valueOf(((Number) drinkData.get("quantity")).doubleValue())
+                            .setScale(2, RoundingMode.HALF_UP);
+            Drink drink = Drink.findDrinks(Long.valueOf(drinkId));
             PersonDrink personDrink = new PersonDrink();
             personDrink.setCreatedBy(id);
             personDrink.setPersonId(person);
@@ -176,7 +182,7 @@ public class DrinkController {
             personDrink.setCreatedDatetime(Calendar.getInstance());
             personDrink.setDrinkId(drink);
             personDrink.setDatetimeOfConsumtion(Calendar.getInstance());
-            personDrink.setQuantity(BigDecimal.ONE);
+            personDrink.setQuantity(quantity);
             personDrinkService.savePersonDrinks(personDrink);
         }
     }

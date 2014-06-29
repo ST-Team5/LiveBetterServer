@@ -11,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/activities")
@@ -155,9 +158,13 @@ public class ActivityController {
 	}
 
     @RequestMapping(value = "/{id}", method=RequestMethod.POST, headers = {"Content-type=application/json"})
-    public @ResponseBody void addPersonActivities(@PathVariable("id") Long id, @RequestBody Long[] activityIds) {
+    public @ResponseBody void addPersonActivities(@PathVariable("id") Long id, @RequestBody List<Map<String, Object>> data) {
         final Person person = Person.findPersons(id);
-        for (Long activityId : activityIds) {
+        for (Map<String, Object> activityData : data) {
+            Long activityId = Long.valueOf(((Number) activityData.get("id")).longValue());
+            BigDecimal quantity =
+                    BigDecimal.valueOf(((Number) activityData.get("quantity")).doubleValue())
+                            .setScale(2, RoundingMode.HALF_UP);
             Activity activity = Activity.findActivities(activityId);
             PersonActivity personActivity = new PersonActivity();
             personActivity.setPersonId(person);
@@ -166,7 +173,7 @@ public class ActivityController {
             personActivity.setCreatedDatetime(Calendar.getInstance());
             personActivity.setDatetimeOfConsumtion(Calendar.getInstance());
             personActivity.setActivityId(activity);
-            personActivity.setQuantity(BigDecimal.ONE);
+            personActivity.setQuantity(quantity);
             personActivityService.savePersonActivities(personActivity);
         }
     }
