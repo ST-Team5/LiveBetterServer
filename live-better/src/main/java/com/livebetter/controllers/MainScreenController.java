@@ -86,7 +86,7 @@ public class MainScreenController {
         final BigDecimal caloriesOut = Person.getPersonBurnedCaloriesForSpecificDate(id, date);
         final BigDecimal caloriesRemaining = caloriesIn.subtract(caloriesOut).add(desiredDifference);
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("caloriesConsumed", caloriesInMeals);
+        result.put("caloriesConsumed", caloriesIn);
         result.put("caloriesBurned", caloriesOut);
         result.put("caloriesRemaining", caloriesRemaining);
         result.put("minutesExercised",
