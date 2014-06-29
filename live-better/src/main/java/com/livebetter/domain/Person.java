@@ -100,10 +100,18 @@ public class Person {
         return BigDecimal.valueOf(((Number) results.get(0)).doubleValue());
     }
 
-    public static BigDecimal getPersonCaloricIntakeForSpecificDate(Long personId, Calendar date) {
+    public static BigDecimal getPersonCaloricIntakeFromMealsForSpecificDate(Long personId, Calendar date) {
         return executeMainScreenAggregationQuery(
                 String.format(
                         "SELECT sum(personMeal.mealId.calories) from PersonMeal personMeal where personId.id = %d and datetimeOfConsumtion >= :startDate and datetimeOfConsumtion < :endDate",
+                        personId),
+                date);
+    }
+
+    public static BigDecimal getPersonCaloricIntakeFromDrinksForSpecificDate(Long personId, Calendar date) {
+        return executeMainScreenAggregationQuery(
+                String.format(
+                        "SELECT sum(personDrink.drinkId.calories) from PersonDrink personDrink where personId.id = %d and datetimeOfConsumtion >= :startDate and datetimeOfConsumtion < :endDate",
                         personId),
                 date);
     }

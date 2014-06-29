@@ -80,11 +80,13 @@ public class MainScreenController {
         Person person = Person.findPersons(id);
 
         final BigDecimal desiredDifference = calculatePersonCaloriesPerDay(person, Calendar.getInstance());
-        final BigDecimal caloriesIn = Person.getPersonCaloricIntakeForSpecificDate(id, date);
+        final BigDecimal caloriesInMeals = Person.getPersonCaloricIntakeFromMealsForSpecificDate(id, date);
+        final BigDecimal caloriesInDrinks = Person.getPersonCaloricIntakeFromDrinksForSpecificDate(id, date);
+        final BigDecimal caloriesIn = caloriesInMeals.add(caloriesInDrinks);
         final BigDecimal caloriesOut = Person.getPersonBurnedCaloriesForSpecificDate(id, date);
         final BigDecimal caloriesRemaining = caloriesIn.subtract(caloriesOut).add(desiredDifference);
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("caloriesConsumed", caloriesIn);
+        result.put("caloriesConsumed", caloriesInMeals);
         result.put("caloriesBurned", caloriesOut);
         result.put("caloriesRemaining", caloriesRemaining);
         result.put("minutesExercised",
