@@ -149,7 +149,8 @@ public class PersonController {
 	@RequestMapping(value = "setdetails", method = RequestMethod.POST, headers = {"Content-type=application/json"})
     public @ResponseBody void SetUserDetails(@RequestBody Person personAsJson) {
 
-		Person person = new Person();
+		Person person = personService.findPersons((long)1);
+		
 		Metabolism personMetabolism = new Metabolism();
 		personMetabolism.setId((long) 1);
 		person.setFirstname(personAsJson.getFirstname());
